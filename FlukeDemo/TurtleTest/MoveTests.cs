@@ -5,6 +5,7 @@ using FlukeDemo;
 using FlukeDemo.Enums;
 using FlukeDemo.ExtensionMethods;
 using FlukeDemo.Interfaces;
+using FlukeDemo.MoveResults;
 using FlukeDemo.Players;
 using FlukeDemo.Players.PlayerMoves;
 using Microsoft.VisualStudio.TestPlatform.Common.Utilities;
@@ -29,7 +30,7 @@ namespace TurtleTest
             _player = Mock.Of<IPlayer>();
             Mock.Get(_board).Setup(d => d.Height).Returns(3);
             Mock.Get(_board).Setup(d => d.Width).Returns(3);
-            Mock.Get(_board).Setup(d => d.WhatIsPosition(It.IsAny<Position>())).Returns(MoveResult.StillInDanger);
+            Mock.Get(_board).Setup(d => d.WhatIsPosition(It.IsAny<Position>())).Returns(new StillInDanger());
             Mock.Get(_player).Setup(d => d.PlayBoard).Returns(_board);
             Mock.Get(_player).Setup(d => d.CurrentDirection).Returns(_currentDirection);
         }

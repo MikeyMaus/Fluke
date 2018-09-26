@@ -4,6 +4,7 @@ using System.Text;
 using FlukeDemo;
 using FlukeDemo.Enums;
 using FlukeDemo.Interfaces;
+using FlukeDemo.MoveResults;
 using FlukeDemo.Players;
 using FlukeDemo.Players.PlayerMoves;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -37,7 +38,7 @@ namespace TurtleTest
             _moves.Add(new BunnyHop());          //Not implemented, but should never trigger
 
             var finalMove = _sut.ProcessMoves(_moves);
-            Assert.AreEqual(finalMove, MoveResult.Success);
+            Assert.IsTrue(finalMove is Success);
         }
 
         [TestMethod]
@@ -52,7 +53,7 @@ namespace TurtleTest
             _moves.Add(new StepForward());
 
             var finalMove = _sut.ProcessMoves(_moves);
-            Assert.AreEqual(finalMove, MoveResult.MineHit);
+            Assert.IsTrue(finalMove is MineHit);
         }
 
 

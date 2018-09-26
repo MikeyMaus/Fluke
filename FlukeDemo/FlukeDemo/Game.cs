@@ -24,7 +24,7 @@ namespace FlukeDemo
         public void Play()
         {
             var result = _player.ProcessMoves(_moves);
-            Console.WriteLine(result.GetDescription());
+            Console.WriteLine(result.Description);
         }
     }
 }

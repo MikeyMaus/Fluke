@@ -21,19 +21,19 @@ namespace FlukeDemo.Players
         public Position CurrentPosition { get; set; }
         public IBoard PlayBoard { get; set; }
 
-        public MoveResult ProcessMoves(IEnumerable<IMove> moves)
+        public IMoveResult ProcessMoves(IEnumerable<IMove> moves)
         {
             var listOfMoves = GetMoves(moves);
             var finalMove = listOfMoves.Last();
             return finalMove;
         }
 
-        private IEnumerable<MoveResult> GetMoves(IEnumerable<IMove> moves)
+        private IEnumerable<IMoveResult> GetMoves(IEnumerable<IMove> moves)
         {
             foreach (var m in moves)
             {
                 var currentPosition = PlayBoard.WhatIsPosition(CurrentPosition);
-                if (currentPosition.IsGameEnder())
+                if (currentPosition.IsGameEnder)
                 {
                     yield return currentPosition;
                     yield break;

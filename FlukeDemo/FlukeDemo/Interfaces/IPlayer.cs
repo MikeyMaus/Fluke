@@ -12,6 +12,6 @@ namespace FlukeDemo.Interfaces
 
         IBoard PlayBoard { get; set; }
 
-        MoveResult ProcessMoves(IEnumerable<IMove> moves);
+        IMoveResult ProcessMoves(IEnumerable<IMove> moves);
     }
 }

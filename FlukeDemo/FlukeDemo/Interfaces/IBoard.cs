@@ -8,6 +8,6 @@ namespace FlukeDemo.Interfaces
     {
         int Width { get; }
         int Height { get; }
-        MoveResult WhatIsPosition(Position position);
+        IMoveResult WhatIsPosition(Position position);
     }
 }

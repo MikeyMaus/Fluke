@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using FlukeDemo;
+using FlukeDemo.MoveResults;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -26,7 +27,7 @@ namespace TurtleTest
         public void Standing_On_Exit_Should_Return_Success()
         {
             var result = _sut.WhatIsPosition(new Position(2, 2));
-            Assert.AreEqual(result, MoveResult.Success);
+            Assert.IsTrue(result is Success);
         }
 
         [TestMethod]
@@ -34,7 +35,7 @@ namespace TurtleTest
         public void Standing_On_Nothing_Should_Return_StillInDanger()
         {
             var result = _sut.WhatIsPosition(new Position(0, 0));
-            Assert.AreEqual(result, MoveResult.StillInDanger);
+            Assert.IsTrue(result is StillInDanger);
         }
 
         [TestMethod]
@@ -43,7 +44,7 @@ namespace TurtleTest
         {
             _mines.Add(new Position(0, 0));
             var result = _sut.WhatIsPosition(new Position(0, 0));
-            Assert.AreEqual(result, MoveResult.MineHit);
+            Assert.IsTrue(result is MineHit);
         }
 
         [TestMethod]
@@ -51,7 +52,7 @@ namespace TurtleTest
         public void Standing_Off_Board_Should_Return_Out_Of_Bounds()
         {
             var result = _sut.WhatIsPosition(new Position(5, 0));
-            Assert.AreEqual(result, MoveResult.OutOfBounds);
+            Assert.IsTrue(result is OutOfBounds);
         }
     }
 }
