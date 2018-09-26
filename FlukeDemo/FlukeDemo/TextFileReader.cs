@@ -17,8 +17,8 @@ namespace FlukeDemo
     public class TextFileReader
     {
         private readonly List<string> _fileLines;
-        private const string moveCommand = "m";
-        private const string rotateCommand = "r";
+        private const string MoveCommand = "m";
+        private const string RotateCommand = "r";
 
 
         public TextFileReader(string fileUrl)
@@ -39,7 +39,6 @@ namespace FlukeDemo
             var board = new Board(parsedGridSize.x, parsedGridSize.y, parsedExitPoint, mines);
             var player = new Turtle(parsedStartingData.direction, parsedStartingData.position, board);
             
-
             var returned = new Game(player, moves);
             return returned;
         }
@@ -67,7 +66,6 @@ namespace FlukeDemo
         private (Position position, Direction direction)  GetStartingPositionAndDirection(string line)
         {
             var words = line.Split(" ");
-            
 
             bool parseSuccess = int.TryParse(words[4], out var width);
             if (!parseSuccess) throw new ArgumentException("Unable to find width");
@@ -100,24 +98,16 @@ namespace FlukeDemo
             var moves = new List<IMove>();
             foreach (var w in words.Skip(1))
             {
-                if (w == moveCommand)
+                if (w == MoveCommand)
                 {
                     moves.Add(new StepForward());
                 }
-                if (w == rotateCommand)
+                if (w == RotateCommand)
                 {
                     moves.Add(new RotateRight());
                 }
             }
             return moves;
         }
-
-        private Direction GetStartingDirection(string line)
-        {
-            bool parseSuccess;
-            return Direction.East;
-        }
-
-
     }
 }
